@@ -1,0 +1,19 @@
+import pytest
+
+from hexlet_code.gendiff import generate_diff
+from pathlib import Path
+
+
+def get_test_data_path(filename):
+    return Path(__file__).parent / 'test_data' / filename
+
+def read_file(filename):
+    return get_test_data_path(filename).read_text()
+
+
+def test_gendiff_json_stylish():
+    assert generate_diff(
+        'stylish', 
+        get_test_data_path('file1.json'),
+        get_test_data_path('file2.json'),
+    ) == read_file('diff_json_stylish.txt')
