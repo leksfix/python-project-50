@@ -8,7 +8,7 @@ test:
 	uv run pytest
 
 test-coverage:
-	uv run pytest --cov=hexlet_code
+	uv run pytest --cov=hexlet_code  --cov-report xml
 
 lint:
 	uv run ruff check hexlet_code
