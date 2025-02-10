@@ -54,14 +54,14 @@ def format_stylish(diff):
         for i in node:
             tp = i['type']
             if tp == DIFF_TYPE_ADD:
-                ds.append(f'{indent} + {i["name"]}: {i["value"]}')
+                ds.append(f'{indent}+ {i["name"]}: {i["value"]}')
             elif tp == DIFF_TYPE_DEL:
-                ds.append(f'{indent} - {i["name"]}: {i["value"]}')
+                ds.append(f'{indent}- {i["name"]}: {i["value"]}')
             elif tp == DIFF_TYPE_NEQ:
-                ds.append(f'{indent} - {i["name"]}: {i["value_old"]}')
-                ds.append(f'{indent} + {i["name"]}: {i["value"]}')
+                ds.append(f'{indent}- {i["name"]}: {i["value_old"]}')
+                ds.append(f'{indent}+ {i["name"]}: {i["value"]}')
             else:
-                ds.append(f'{indent}   {i["name"]}: {i["value"]}')
+                ds.append(f'{indent}  {i["name"]}: {i["value"]}')
         ds.append(f"{' ' * 2 * lvl}}}")
     
     lst = []
