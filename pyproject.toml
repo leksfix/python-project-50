@@ -19,6 +19,7 @@ packages = ["hexlet_code"]
 
 [dependency-groups]
 dev = [
+    "pytest-cov>=6.0.0",
     "pytest>=8.3.4",
     "ruff>=0.9.4",
 ]
