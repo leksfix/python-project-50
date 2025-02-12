@@ -1,11 +1,11 @@
-""" gendiff application script"""
+""" gendiff CLI"""
 
 import argparse
 
-from hexlet_code.gendiff import generate_diff
+from gendiff.gendiff import generate_diff
 
 
-def main():
+def cli_run():
     """Runs the CLI application"""
     parser = argparse.ArgumentParser(
         prog='gendiff',
@@ -20,8 +20,4 @@ def main():
 
     args = parser.parse_args()
 
-    print(generate_diff(args.format, args.first_file, args.second_file))
-
-
-if __name__ == "__main__":
-    main()
+    print(generate_diff(args.first_file, args.second_file, args.format))
