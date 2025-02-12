@@ -1,7 +1,7 @@
 
 from pathlib import Path
 
-from hexlet_code.gendiff import generate_diff
+from gendiff.gendiff import generate_diff
 
 
 def get_test_data_path(filename):
@@ -13,8 +13,8 @@ def read_file(filename):
 
 
 def test_gendiff_json_stylish():
-    assert generate_diff(
-        'stylish', 
+    assert generate_diff(        
         get_test_data_path('file1.json'),
         get_test_data_path('file2.json'),
+        'stylish'
     ) == read_file('diff_json_stylish.txt')
