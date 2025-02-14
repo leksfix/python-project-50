@@ -26,3 +26,19 @@ def test_gendiff_yaml_stylish():
         get_test_data_path('file2.yaml'),
         'stylish'
     ) == read_file('diff_stylish.txt')
+
+
+def test_gendiff_json_plain():
+    assert generate_diff(
+        get_test_data_path('file1.json'),
+        get_test_data_path('file2.json'),
+        'plain'
+    ) == read_file('diff_plain.txt')
+
+
+def test_gendiff_yaml_plain():
+    assert generate_diff(
+        get_test_data_path('file1.yaml'),
+        get_test_data_path('file2.yaml'),
+        'plain'
+    ) == read_file('diff_plain.txt')

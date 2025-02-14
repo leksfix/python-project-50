@@ -9,3 +9,14 @@ def parse_json(filename):
 
 def parse_yaml(filename):
     return load(open(filename), Loader=Loader)
+
+
+def parse_file(filename):
+    ext = str(filename).split('.')[-1].lower()
+    if ext == 'json':
+        return parse_json(filename)
+    elif ext in {'yml', 'yaml'}:
+        return parse_yaml(filename)
+    else:
+        return None
+

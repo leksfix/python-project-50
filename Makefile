@@ -21,10 +21,8 @@ build:
 	uv build
 
 
-
-
 package-install:
 	uv tool install --force-reinstall dist/*.whl
 
 
-.PHONY: install run test lint selfcheck check build
+.PHONY: install run test lint selfcheck check build package-install
