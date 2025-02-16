@@ -1,4 +1,5 @@
-from formats import format_plain, format_stylish
+from formatter import format_json, format_plain, format_stylish
+
 from gendiff.compare import get_diff_list
 from gendiff.parse import parse_file
 
@@ -15,6 +16,8 @@ def generate_diff(filename1, filename2, format='stylish'):
             return format_stylish(diff_list)
         case 'plain':
             return format_plain(diff_list)
+        case 'json':
+            return format_json(diff_list)
         case _:
-            return 'Unknown format'
+            return f'Unknown format: {format}'
     
