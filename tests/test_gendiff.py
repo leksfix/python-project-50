@@ -42,3 +42,19 @@ def test_gendiff_yaml_plain():
         get_test_data_path('file2.yaml'),
         'plain'
     ) == read_file('diff_plain.txt')
+
+
+def test_gendiff_json_json():
+    assert generate_diff_str(
+        get_test_data_path('file1.json'),
+        get_test_data_path('file2.json'),
+        'json'
+    ) == read_file('diff_json.txt')
+
+
+def test_gendiff_yaml_json():
+    assert generate_diff_str(
+        get_test_data_path('file1.yaml'),
+        get_test_data_path('file2.yaml'),
+        'json'
+    ) == read_file('diff_json.txt')
