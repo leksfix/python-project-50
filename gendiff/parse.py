@@ -3,6 +3,10 @@ import json
 from yaml import Loader, load
 
 
+def get_extension(filename):
+    return str(filename).split('.')[-1].lower()
+
+
 def parse_json(filename):
     return json.load(open(filename))
 
@@ -12,11 +16,11 @@ def parse_yaml(filename):
 
 
 def parse_file(filename):
-    ext = str(filename).split('.')[-1].lower()
+    ext = get_extension(filename)
     if ext == 'json':
         return parse_json(filename)
     elif ext in {'yml', 'yaml'}:
         return parse_yaml(filename)
     else:
-        return None
+        raise Exception("Unknown file type")
 
