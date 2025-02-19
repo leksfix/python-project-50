@@ -1,7 +1,7 @@
 
 from pathlib import Path
 
-from gendiff.gendiff import generate_diff
+from gendiff.gendiff import generate_diff_str
 
 
 def get_test_data_path(filename):
@@ -13,7 +13,7 @@ def read_file(filename):
 
 
 def test_gendiff_json_stylish():
-    assert generate_diff(
+    assert generate_diff_str(
         get_test_data_path('file1.json'),
         get_test_data_path('file2.json'),
         'stylish'
@@ -21,7 +21,7 @@ def test_gendiff_json_stylish():
 
 
 def test_gendiff_yaml_stylish():
-    assert generate_diff(
+    assert generate_diff_str(
         get_test_data_path('file1.yaml'),
         get_test_data_path('file2.yaml'),
         'stylish'
@@ -29,7 +29,7 @@ def test_gendiff_yaml_stylish():
 
 
 def test_gendiff_json_plain():
-    assert generate_diff(
+    assert generate_diff_str(
         get_test_data_path('file1.json'),
         get_test_data_path('file2.json'),
         'plain'
@@ -37,7 +37,7 @@ def test_gendiff_json_plain():
 
 
 def test_gendiff_yaml_plain():
-    assert generate_diff(
+    assert generate_diff_str(
         get_test_data_path('file1.yaml'),
         get_test_data_path('file2.yaml'),
         'plain'

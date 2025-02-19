@@ -2,11 +2,9 @@
 
 import argparse
 
-from gendiff.gendiff import generate_diff
 
-
-def cli_run():
-    """Runs the CLI application"""
+def get_args():
+    """Returns CLI arguments"""
     parser = argparse.ArgumentParser(
         prog='gendiff',
         description='Compares two configuration files and shows a difference.',
@@ -20,4 +18,4 @@ def cli_run():
 
     args = parser.parse_args()
 
-    print(generate_diff(args.first_file, args.second_file, args.format))
+    return (args.first_file, args.second_file, args.format)

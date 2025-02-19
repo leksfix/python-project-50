@@ -4,7 +4,7 @@ DIFF_TYPE_CNG = 'changed'
 DIFF_TYPE_UNC = 'unchanged'
 
 
-def get_diff_list(dict1, dict2):
+def get_diffs(dict1, dict2):
     """Assume that input parameters are dicts"""
     res = []
     for k in dict2.keys() | dict1.keys():
@@ -14,7 +14,7 @@ def get_diff_list(dict1, dict2):
             diff = {'type': DIFF_TYPE_DEL, 'name': k, 'value': dict1[k]}
         else:
             if isinstance(dict1[k], dict) and isinstance(dict2[k], dict):
-                children = get_diff_list(dict1[k], dict2[k])
+                children = get_diffs(dict1[k], dict2[k])
                 diff = {'type': DIFF_TYPE_UNC, 'name': k, 'children': children}
             else:
                 if dict1[k] == dict2[k]:

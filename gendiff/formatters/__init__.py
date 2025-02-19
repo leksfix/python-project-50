@@ -9,11 +9,11 @@ __all__ = (
 
 def get_formatter(format):
     match format:
-        case 'stylish':
+        case 'stylish' | None:
             return format_stylish
         case 'plain':
             return format_plain
         case 'json':
             return format_json
         case _:
-            raise Exception("Unknown format")
+            raise Exception(f"Unknown format: '{format}'")

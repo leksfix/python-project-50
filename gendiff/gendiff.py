@@ -1,11 +1,11 @@
-from gendiff.compare import get_diff_list
+from gendiff.compare import get_diffs
 from gendiff.formatters import get_formatter
 from gendiff.parse import parse_file
 
 
-def generate_diff(filename1, filename2, format='stylish'):
+def generate_diff_str(filename1, filename2, format=None):
     """Generates diff string using 'format' argument"""
     file1 = parse_file(filename1)
     file2 = parse_file(filename2)
-    diff_list = get_diff_list(file1, file2)
-    return get_formatter(format)(diff_list)
+    diffs = get_diffs(file1, file2)
+    return get_formatter(format)(diffs)

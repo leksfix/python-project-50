@@ -1,7 +1,7 @@
 [project]
-name = "python-project-50"
+name = "hexlet-code"
 version = "1.0.0"
-description = "gendiff project"
+description = "python-project-50: gendiff"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
