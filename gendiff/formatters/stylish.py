@@ -59,18 +59,16 @@ def format_stylish(diffs):
                 fmt_lst.append(f"{indent}  }}")
             else:
                 val = to_str(i["value"], lvl)
-                val = ' ' + val if val else ''
                 if tp == ADDED:
-                    fmt_lst.append(f'{indent}+ {name}:{val}')
+                    fmt_lst.append(f'{indent}+ {name}: {val}')
                 elif tp == DELETED:
-                    fmt_lst.append(f'{indent}- {name}:{val}')
+                    fmt_lst.append(f'{indent}- {name}: {val}')
                 elif tp == CHANGED:
                     val_old = to_str(i["value_old"], lvl)
-                    val_old = ' ' + val_old if val_old else ''
-                    fmt_lst.append(f'{indent}- {name}:{val_old}')
-                    fmt_lst.append(f'{indent}+ {name}:{val}')
+                    fmt_lst.append(f'{indent}- {name}: {val_old}')
+                    fmt_lst.append(f'{indent}+ {name}: {val}')
                 elif tp == UNCHANGED:
-                    fmt_lst.append(f'{indent}  {name}:{val}')
+                    fmt_lst.append(f'{indent}  {name}: {val}')
 
     lst = ['{']
     format_stylish_int(diffs, lst, 1)
