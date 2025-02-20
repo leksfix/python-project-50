@@ -3,7 +3,7 @@ from pathlib import Path
 
 import pytest
 
-from gendiff.gendiff import generate_diff_str
+from gendiff.gendiff import generate_diff
 
 
 def get_test_data_path(filename):
@@ -23,7 +23,7 @@ def read_file(filename):
     ('file1.yaml', 'file2.yaml', 'json', 'diff_json.txt')
 ])
 def test_gendiff_result(filename1, filename2, format, res_filename):
-    assert generate_diff_str(
+    assert generate_diff(
         get_test_data_path(filename1),
         get_test_data_path(filename2),
         format
@@ -32,7 +32,7 @@ def test_gendiff_result(filename1, filename2, format, res_filename):
 
 def test_unknown_format():
     with pytest.raises(Exception) as e:
-        generate_diff_str(
+        generate_diff(
             get_test_data_path('file1.json'),
             get_test_data_path('file2.json'),
             'wrong'
@@ -42,7 +42,7 @@ def test_unknown_format():
 
 def test_unknown_file_type():
     with pytest.raises(Exception) as e:
-        generate_diff_str(
+        generate_diff(
             get_test_data_path('file1.bad'),
             get_test_data_path('file2.bad'),
             'wrong'

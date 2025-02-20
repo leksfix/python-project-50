@@ -1,5 +1,5 @@
-from gendiff.gendiff import generate_diff_str
+from gendiff.gendiff import generate_diff
 
 __all__ = (
-    'generate_diff_str',
+    'generate_diff',
 )

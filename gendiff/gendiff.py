@@ -3,7 +3,7 @@ from gendiff.formatters import get_formatter
 from gendiff.parse import parse_file
 
 
-def generate_diff_str(filename1, filename2, format=None):
+def generate_diff(filename1, filename2, format=None):
     """Generates diff string using 'format' argument"""
     file1 = parse_file(filename1)
     file2 = parse_file(filename2)
