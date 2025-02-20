@@ -1,9 +1,9 @@
 from gendiff.compare import (
-    TYPE_ADDED,
-    TYPE_CHANGED,
-    TYPE_DELETED,
-    TYPE_NESTED,
-    TYPE_UNCHANGED,
+    ADDED,
+    CHANGED,
+    DELETED,
+    NESTED,
+    UNCHANGED,
 )
 
 
@@ -27,23 +27,22 @@ def format_plain(diffs):
         for i in diffs:
             tp = i['type']
             name = f"{path}.{i['name']}" if path else i['name']
-            if tp == TYPE_NESTED:
+            if tp == NESTED:
                 format_plain_int(i['value'], fmt_lst, name)
             else:
                 val = to_str(i['value'])
-                if tp == TYPE_ADDED:
+                if tp == ADDED:
                     fmt_lst.append(
                         f"Property '{name}' was added with value: {val}"
                     )
-                elif tp == TYPE_DELETED:
+                elif tp == DELETED:
                     fmt_lst.append(f"Property '{name}' was removed")
-                elif tp == TYPE_CHANGED:
+                elif tp == CHANGED:
                     val_old = to_str(i['value_old'])
                     fmt_lst.append(
-                        f"Property '{name}' was updated. \
-From {val_old} to {val}"
+                        f"Property '{name}' was updated. From {val_old} to {val}"  # noqa: E501
                     )
-                elif tp == TYPE_UNCHANGED:
+                elif tp == UNCHANGED:
                     pass
 
     lst = []

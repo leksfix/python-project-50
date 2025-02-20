@@ -1,9 +1,9 @@
 from gendiff.compare import (
-    TYPE_ADDED,
-    TYPE_CHANGED,
-    TYPE_DELETED,
-    TYPE_NESTED,
-    TYPE_UNCHANGED,
+    ADDED,
+    CHANGED,
+    DELETED,
+    NESTED,
+    UNCHANGED,
 )
 
 
@@ -53,23 +53,23 @@ def format_stylish(diffs):
         for i in diffs:
             tp = i['type']
             name = i["name"]
-            if tp == TYPE_NESTED:
+            if tp == NESTED:
                 fmt_lst.append(f'{indent}  {name}: {{')
                 format_stylish_int(i['value'], fmt_lst, lvl + 1)
                 fmt_lst.append(f"{indent}  }}")
             else:
                 val = to_str(i["value"], lvl)
                 val = ' ' + val if val else ''
-                if tp == TYPE_ADDED:
+                if tp == ADDED:
                     fmt_lst.append(f'{indent}+ {name}:{val}')
-                elif tp == TYPE_DELETED:
+                elif tp == DELETED:
                     fmt_lst.append(f'{indent}- {name}:{val}')
-                elif tp == TYPE_CHANGED:
+                elif tp == CHANGED:
                     val_old = to_str(i["value_old"], lvl)
                     val_old = ' ' + val_old if val_old else ''
                     fmt_lst.append(f'{indent}- {name}:{val_old}')
                     fmt_lst.append(f'{indent}+ {name}:{val}')
-                elif tp == TYPE_UNCHANGED:
+                elif tp == UNCHANGED:
                     fmt_lst.append(f'{indent}  {name}:{val}')
 
     lst = ['{']

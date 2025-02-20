@@ -1,6 +1,8 @@
 
 from pathlib import Path
 
+import pytest
+
 from gendiff.gendiff import generate_diff_str
 
 
@@ -12,49 +14,37 @@ def read_file(filename):
     return get_test_data_path(filename).read_text()
 
 
-def test_gendiff_json_stylish():
+@pytest.mark.parametrize("filename1, filename2, format, res_filename", [
+    ('file1.json', 'file2.json', 'stylish', 'diff_stylish.txt'),
+    ('file1.yaml', 'file2.yaml', 'stylish', 'diff_stylish.txt'),
+    ('file1.json', 'file2.json', 'plain', 'diff_plain.txt'),
+    ('file1.yaml', 'file2.yaml', 'plain', 'diff_plain.txt'),
+    ('file1.json', 'file2.json', 'json', 'diff_json.txt'),
+    ('file1.yaml', 'file2.yaml', 'json', 'diff_json.txt')
+])
+def test_gendiff_result(filename1, filename2, format, res_filename):
     assert generate_diff_str(
-        get_test_data_path('file1.json'),
-        get_test_data_path('file2.json'),
-        'stylish'
-    ) == read_file('diff_stylish.txt')
+        get_test_data_path(filename1),
+        get_test_data_path(filename2),
+        format
+    ) == read_file(res_filename)
 
 
-def test_gendiff_yaml_stylish():
-    assert generate_diff_str(
-        get_test_data_path('file1.yaml'),
-        get_test_data_path('file2.yaml'),
-        'stylish'
-    ) == read_file('diff_stylish.txt')
+def test_unknown_format():
+    with pytest.raises(Exception) as e:
+        generate_diff_str(
+            get_test_data_path('file1.json'),
+            get_test_data_path('file2.json'),
+            'wrong'
+        )
+    assert str(e.value) == "Unknown format: 'wrong'"
 
 
-def test_gendiff_json_plain():
-    assert generate_diff_str(
-        get_test_data_path('file1.json'),
-        get_test_data_path('file2.json'),
-        'plain'
-    ) == read_file('diff_plain.txt')
-
-
-def test_gendiff_yaml_plain():
-    assert generate_diff_str(
-        get_test_data_path('file1.yaml'),
-        get_test_data_path('file2.yaml'),
-        'plain'
-    ) == read_file('diff_plain.txt')
-
-
-def test_gendiff_json_json():
-    assert generate_diff_str(
-        get_test_data_path('file1.json'),
-        get_test_data_path('file2.json'),
-        'json'
-    ) == read_file('diff_json.txt')
-
-
-def test_gendiff_yaml_json():
-    assert generate_diff_str(
-        get_test_data_path('file1.yaml'),
-        get_test_data_path('file2.yaml'),
-        'json'
-    ) == read_file('diff_json.txt')
+def test_unknown_file_type():
+    with pytest.raises(Exception) as e:
+        generate_diff_str(
+            get_test_data_path('file1.bad'),
+            get_test_data_path('file2.bad'),
+            'wrong'
+        )
+    assert str(e.value) == "Unknown file type: 'bad'"
