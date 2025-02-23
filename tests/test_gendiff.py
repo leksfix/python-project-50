@@ -31,20 +31,18 @@ def test_gendiff_result(filename1, filename2, format, res_filename):
 
 
 def test_unknown_format():
-    with pytest.raises(Exception) as e:
+    with pytest.raises(ValueError, match="Unknown format: 'wrong'"):
         generate_diff(
             get_test_data_path('file1.json'),
             get_test_data_path('file2.json'),
             'wrong'
         )
-    assert str(e.value) == "Unknown format: 'wrong'"
 
 
 def test_unknown_file_type():
-    with pytest.raises(Exception) as e:
+    with pytest.raises(ValueError, match="Unknown file type: 'bad'"):
         generate_diff(
             get_test_data_path('file1.bad'),
             get_test_data_path('file2.bad'),
-            'wrong'
+            'stylish'
         )
-    assert str(e.value) == "Unknown file type: 'bad'"

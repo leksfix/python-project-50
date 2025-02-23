@@ -22,5 +22,5 @@ def parse_file(filename):
     elif ext in {'yml', 'yaml'}:
         return parse_yaml(filename)
     else:
-        raise Exception(f"Unknown file type: '{ext}'")
+        raise ValueError(f"Unknown file type: '{ext}'")
 
